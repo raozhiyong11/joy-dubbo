@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+       
+	
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="joy-dubbo-app" />
+    <dubbo:registry protocol="zookeeper" address="192.168.2.111:2181"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+    
+    <context:component-scan base-package="org.joy.dubbo">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+</beans>
